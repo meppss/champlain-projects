@@ -1,8 +1,0 @@
-C:\~\venv\Scripts\python.exe "C:/~/Week 1/for_loop.py"
-0
-2
-4
-6
-8
-
-Process finished with exit code 0
