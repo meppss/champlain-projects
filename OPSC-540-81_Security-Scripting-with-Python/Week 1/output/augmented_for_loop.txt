@@ -1,0 +1,6 @@
+/usr/local/bin/python3.7 "/Users/michael/Documents/GitHub/champlain-projects/OPSC-540-81_Security-Scripting-with-Python/Week 1/augmented_for_loop.py"
+apples, bananas, tofu, and cats
+New York, Chicago, Atlanta, Burlington, Philadelphia, and Denver
+carrots, mango, and avocado
+
+Process finished with exit code 0
