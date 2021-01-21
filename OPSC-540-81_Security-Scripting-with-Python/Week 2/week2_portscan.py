@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 '''
 Michael Epstein
 OPSC-540-81
@@ -13,10 +12,6 @@ import ipaddress
 import argparse
 
 # code
-'''
-def nl():
- print('\n') #prints new line when function is called
-'''
 ports = [20, 21, 22, 23, 80, 443, 513]
 
 parser = argparse.ArgumentParser()
@@ -27,7 +22,9 @@ try:
 except ValueError:
     sys.exit("Bad IP Address entered")
 
-t1= dt.now()
+t1 = dt.now()
+print("Scan started:", t1)
+print("\n")
 try:
     for port in ports:
         s = socket(AF_INET, SOCK_STREAM)
@@ -35,12 +32,11 @@ try:
         result = s.connect_ex((str(host_ip), port))
         if result == 0:
             print("[OPEN]:", port)
-            # print desc[port]
         else:
             print("[CLOSED]:", port)
         s.close()
 except KeyboardInterrupt:
-    print("You stop this ")
+    print("User stopped script.")
     sys.exit()
 
 except Exception as e:
@@ -48,6 +44,7 @@ except Exception as e:
     sys.exit()
 
 t2 = dt.now()
-
+print("\n")
+print("Scan ended:", t1)
 total = (t2-t1)
-print("scanning complete in ", total)
+print("Scan finished in", total)
