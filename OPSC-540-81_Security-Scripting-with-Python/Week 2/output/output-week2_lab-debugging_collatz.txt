@@ -1,0 +1,51 @@
+Michael Epstein
+OPSC-540-81
+------------------
+# Output Start
+Enter a number:127
+Final number is: 382
+Final number is: 191
+Final number is: 574
+Final number is: 287
+Final number is: 862
+Final number is: 431
+Final number is: 1294
+Final number is: 647
+Final number is: 1942
+Final number is: 971
+Final number is: 2914
+Final number is: 1457
+Final number is: 4372
+Final number is: 2186
+Final number is: 1093
+Final number is: 3280
+Final number is: 1640
+Final number is: 820
+Final number is: 410
+Final number is: 205
+Final number is: 616
+Final number is: 308
+Final number is: 154
+Final number is: 77
+Final number is: 232
+Final number is: 116
+Final number is: 58
+Final number is: 29
+Final number is: 88
+Final number is: 44
+Final number is: 22
+Final number is: 11
+Final number is: 34
+Final number is: 17
+Final number is: 52
+Final number is: 26
+Final number is: 13
+Final number is: 40
+Final number is: 20
+Final number is: 10
+Final number is: 5
+Final number is: 16
+Final number is: 8
+Final number is: 4
+Final number is: 2
+Final number is: 1
