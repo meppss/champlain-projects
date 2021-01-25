@@ -1,0 +1,7 @@
+test_server.py:
+~/client_server-program$ python3 test_server.py
+Connection from ('127.0.0.1', 46186) has been established!
+
+test_client.py:
+~/client_server-program$ python3 test_client.py
+Welcome to the server!
