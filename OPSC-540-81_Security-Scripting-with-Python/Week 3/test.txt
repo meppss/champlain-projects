@@ -1,1 +1,2 @@
-important stuff
+root:x:0:0:root:/root:/usr/bin/zsh
+nm-openvpn:x:124:129:NetworkManager OpenVPN,,,:/var/lib/openvpn/chroot:/usr/sbin/nologin

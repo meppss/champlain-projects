@@ -1,0 +1,12 @@
+$ sudo python3 script.py -f test.txt -u user -u splunk -u root
+OS Name:  Linux
+OS Release:  5.9.0-kali1-amd64
+OS Version:  #1 SMP Debian 5.9.1-1kali2 (2020-10-29)
+user
+No value found for user
+splunk
+No value found for splunk
+root
+Name of file to check for existence: 
+lamma
+File exists:False
