@@ -1,0 +1,13 @@
+$ python3 check_strength_epstein.py
+results for secret: score: 1
+good_len: False, lower: True, upper: False, num: False, special: False
+results for mariposa: score: 2
+good_len: True, lower: True, upper: False, num: False, special: False
+results for password: score: 2
+good_len: True, lower: True, upper: False, num: False, special: False
+results for jordan23: score: 3
+good_len: True, lower: True, upper: False, num: True, special: False
+results for 1a2b3c: score: 2
+good_len: False, lower: True, upper: False, num: True, special: False
+results for andrew!: score: 3
+good_len: True, lower: True, upper: False, num: False, special: True
