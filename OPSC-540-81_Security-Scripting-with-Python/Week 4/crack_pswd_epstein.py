@@ -17,7 +17,7 @@ for hash in hfd.readlines():
           pswd = word.strip() # use this var for writing to file
           pswd_bytes= pswd.encode('utf-8') # use this var for comparison against hash
           # write your code here
-          if hash == md5(pswd_bytes).hexdigest():
+          if hash == md5(pswd_bytes).hexdigest() and pswd[0] != '#':
               afd.write(word)
 
 hfd.close()
