@@ -1,0 +1,44 @@
+(venv)% python3 week5-web_scrape-1.py
+<a href="admitted-students">
+ Admitted Students
+</a>
+
+<a href="current-students">
+ Current Students
+</a>
+
+<a href="undergrad-applicants">
+ Undergrad Applicants
+</a>
+
+<a href="online">
+ Online Students
+</a>
+
+<a href="summer2021">
+ Pre-College Summer Programs
+</a>
+
+<a href="alumni">
+ Alumni
+</a>
+
+<a href="parents">
+ Parents
+</a>
+
+<a href="faculty-and-staff">
+ Faculty &amp; Staff
+</a>
+
+<a href="school-counselors">
+ School Counselors
+</a>
+
+<a href="employer-resources">
+ Employers
+</a>
+
+<a href="prospective-employees">
+ Prospective Employees
+</a>
