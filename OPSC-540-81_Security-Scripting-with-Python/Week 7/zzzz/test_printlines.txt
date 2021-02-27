@@ -1,0 +1,36 @@
+import sqlite3
+
+conn = sqlite3.connect('test.db')
+
+print "opened database successfully woop!!";
+
+conn.execute('''CREATE TABLE if not exists attacks(id INTEGER PRIMARY KEY, attack_line TEXT NOT NULL);''')
+
+#print "Table created Successfuly! YES!!";
+
+logfile = open("modsec_audit.log", "rw+")
+
+lines = logfile.readlines()
+line = lines.pop(0)
+try:
+    while line:
+        if "-B--" in line:
+            url_line = lines.pop(0)  # found a "-B--", so get the next line with the url
+            if "/etc/passwd" in url_line or "script" in url_line: # look for multiple "attacks" here
+                print("Attack found on line: %s" % url_line.strip())
+                # PUT your insert sql statement lines here to insert url_line
+                #for row in url_line:
+                #       print(row[0], str(row[1]))
+                #       conn.execute("INSERT INTO attacks (id, attack_line) values (?,?);",(int(row[0]), str(row[1])))
+        line = lines.pop(0)
+except IndexError:
+    print("\n Parsing logfile completed")
+
+
+"""
+conn.commit()
+print "Records created successfully";
+conn.close()
+"""
+logfile.close()
+                   
