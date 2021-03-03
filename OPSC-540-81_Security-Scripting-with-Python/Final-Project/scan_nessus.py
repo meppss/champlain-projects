@@ -14,20 +14,18 @@ sys.path.append('../')
 from nessrest import ness6rest
 
 #login credentials
-scan = ness6rest.Scanner(url="https://nessusscanner:8834", login="username", password="password")
+scan = ness6rest.Scanner(url="https://local:8834", login="admin", password="Champlain!")
 
-creds = [credentials.WindowsPassword(username="administrator", password="foobar"),
-credentials.WindowsPassword(username="administrator", password="barfoo"),
-credentials.SshPassword(username="nessususer", password="foobar")]
+creds = [credentials.SshPassword(username="msfadmin", password="msfadmin")]
 
 
 #build nessus scanner policy
-scan.upload(upload_file="file.audit")
-scan._policy_add_audit(category="Windows", filename="file.audit")
+scan.upload(upload_file="CIS_Ubuntu_18.04_LTS_Server_v2.0.1_L1.audit")
+scan._policy_add_audit(category="Linux", filename="CIS_Ubuntu_18.04_LTS_Server_v2.0.1_L1.audit")
 scan.policy_add(name="Scripted Scan", plugins="21156")
 
 #launch scan
-scan.scan_add(targets="192.168.0.1")
+scan.scan_add(targets="192.168.1.3")
 scan.scan_run()
 
 # scan results
@@ -40,5 +38,3 @@ for hostname in kbs.keys():
     f = open(hostname, "w")
     f.write(kbs[hostname])
     f.close()
-
-
