@@ -106,7 +106,7 @@ def main():
     args = vars(parser.parse_args())
     
     print (args)
-    
+    policy
     if not args['user']:
         args['user'] = getpass._raw_input('User: ')
     if not args['password']:
