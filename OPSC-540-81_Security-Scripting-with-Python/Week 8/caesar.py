@@ -8,7 +8,7 @@ def translate(msg):
     return translated
 
 
-message = open('plain.txt', 'r').read()
+message = open('cipher2.txt', 'r').read()
 
 key = 13
 
@@ -19,4 +19,4 @@ message = message.upper()
 cipher = translate(message)
 
 print(cipher)
-open('cipher.txt', 'w').write(cipher)
+open('input2.txt', 'w').write(cipher)
