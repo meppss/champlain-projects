@@ -28,38 +28,25 @@ def host_file_scan(filename, scan_file):
     nmap = nmap3.Nmap()
     lines = open(filename, 'r').readlines()
     
+    #runs a vulnerability scan for each host and appends it to a file
     for line in lines:
-        results = nmap.nmap_os_detection(line)
-        results = json.dumps(results, indent=4, sort_keys=True, separators=(". ", "= "))
-        open(scan_file, 'a').write(str(results))
         results = nmap.scan_top_ports(line)
         results = json.dumps(results, indent=4, sort_keys=True, separators=(". ", "= "))
         open(scan_file, 'a').write(str(results))
-    
-    #runs a few nmap scans on the hosts declared in your arguments and saves them to a file
-    results = nmap.nmap_os_detection(filename)
-    results = json.dumps(results, indent=4, sort_keys=True, separators=(". ", "= "))
-    open(scan_file, 'w').write(str(results))
-    results = nmap.scan_top_ports(filename)
-    results = json.dumps(results, indent=4, sort_keys=True, separators=(". ", "= "))
-    open(scan_file, 'a').write(str(results))
 
      
 
 def host_scan(hostname, scan_file):
     #initates the nmap connection and builds the object nmap
-    nmap = nmap3.Nmap()
     
-    #runs a few nmap scans on the hosts declared in your arguments and saves them to a file
-    results = nmap.nmap_os_detection(hostname)
-    results = json.dumps(results, indent=4, sort_keys=True, separators=(". ", "= "))
+    results = ''
+    output = subprocess.check_output(['nmap','-sV', '--script=vulners.nse', '--script-args','mincvss=5.0','-oX','-',hostname],encoding='utf-8')
+    for line in output.splitlines():
+	    results+=(line.strip()+'\n')
+    pretty = (json.dumps(xmltodict.parse(results), indent=4, sort_keys=True))
     open(scan_file, 'w').write(str(results))
-    results = nmap.scan_top_ports(hostname)
-    results = json.dumps(results, indent=4, sort_keys=True, separators=(". ", "= "))
-    open(scan_file, 'a').write(str(results))   
-    
-     
 
+    
 
 def email_send(scan_file):
     subject = "Nmap Scan Results"

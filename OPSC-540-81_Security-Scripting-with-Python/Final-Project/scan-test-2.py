@@ -6,13 +6,9 @@ OPSC-540-81
 import nmap3
 import argparse
 from datetime import datetime
-#import sys
-#import os
-#import io
 import json
 import xmltodict
 import subprocess
-#from os.path import basename
 
 import email, smtplib, ssl
 from email.mime.base import MIMEBase
@@ -20,53 +16,44 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email import encoders
 from email.mime.application import MIMEApplication
-
+import getpass
 
 #code
 def host_file_scan(filename, scan_file):
     #initates the nmap connection and builds the object nmap
-    nmap = nmap3.Nmap()
     lines = open(filename, 'r').readlines()
-    
+    results = ''
+    #runs a vulnerability scan for each host and appends it to a file
     for line in lines:
-        results = nmap.nmap_os_detection(line)
-        results = json.dumps(results, indent=4, sort_keys=True, separators=(". ", "= "))
-        open(scan_file, 'a').write(str(results))
         results = nmap.scan_top_ports(line)
         results = json.dumps(results, indent=4, sort_keys=True, separators=(". ", "= "))
         open(scan_file, 'a').write(str(results))
-    
-    #runs a few nmap scans on the hosts declared in your arguments and saves them to a file
-    results = nmap.nmap_os_detection(filename)
-    results = json.dumps(results, indent=4, sort_keys=True, separators=(". ", "= "))
-    open(scan_file, 'w').write(str(results))
-    results = nmap.scan_top_ports(filename)
-    results = json.dumps(results, indent=4, sort_keys=True, separators=(". ", "= "))
-    open(scan_file, 'a').write(str(results))
+        
+        output = subprocess.check_output(['nmap','-sV', '--script=vulners.nse', '--script-args','mincvss=5.0','-oN','-',line],encoding='utf-8')
+        #organizes the output into line by line pieces of output
+        for line in output.splitlines():
+	        results+=(line.strip()+'\n')
+    #saves to a file which was passed from main()    
+    open(scan_file, 'w').write(str(results))    
 
-     
 
 def host_scan(hostname, scan_file):
     #initates the nmap connection and builds the object nmap
-    nmap = nmap3.Nmap()
     
-    #runs a few nmap scans on the hosts declared in your arguments and saves them to a file
-    results = nmap.nmap_os_detection(hostname)
-    results = json.dumps(results, indent=4, sort_keys=True, separators=(". ", "= "))
+    results = ''
+    output = subprocess.check_output(['nmap','-sV', '--script=vulners.nse', '--script-args','mincvss=5.0','-oN','-',hostname],encoding='utf-8')
+    #organizes the output into line by line pieces of output
+    for line in output.splitlines():
+	    results+=(line.strip()+'\n')
+     #saves to a file which was passed from main()
     open(scan_file, 'w').write(str(results))
-    results = nmap.scan_top_ports(hostname)
-    results = json.dumps(results, indent=4, sort_keys=True, separators=(". ", "= "))
-    open(scan_file, 'a').write(str(results))   
-    
-     
-
 
 def email_send(scan_file):
     subject = "Nmap Scan Results"
     body = "This is an email containing an attachment sent from Python, used for Michael Epstein's Final Project in OPSC-540-81"
     sender_email = input("Type the email for the sender\n")
     receiver_email = input("Type the email for the recipient\n")
-    password = input("Type your password and press enter:\n")
+    password = getpass.getpass(prompt="Type your password and press enter:\n")
     
     # Create a multipart message and set headers
     message = MIMEMultipart()
